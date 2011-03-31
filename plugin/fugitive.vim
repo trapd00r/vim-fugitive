@@ -1988,14 +1988,14 @@ function! fugitive#statusline(...)
   endif
   let head = s:repo().head_ref()
   if head =~# '^ref: '
-    let status .= s:sub(head,'^ref: %(refs/%(heads/|remotes/|tags/)=)=','(').')'
+    let status .= s:sub(head,'^ref: %(refs/%(heads/|remotes/|tags/)=)=','').''
   elseif head =~# '^\x\{40\}$'
-    let status .= '('.head[0:7].')'
+    let status .= '／'.head[0:7].''
   endif
   if &statusline =~# '%[MRHWY]' && &statusline !~# '%[mrhwy]'
     return ',GIT'.status
   else
-    return '[Git'.status.']'
+    return 'GIT → '.status.''
   endif
 endfunction
 
